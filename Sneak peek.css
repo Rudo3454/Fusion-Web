@@ -1,0 +1,106 @@
+/* Nuevo codigo */
+
+/* CONTENEDOR PRINCIPAL CON SCROLL HORIZONTAL */
+.card3Details {
+    display: flex; 
+    flex-direction: row;
+    align-items: flex-start; /* Alinea los botones arriba */
+    gap: 15px;
+    padding: 20px;
+    background: #0a0a0a;
+    border: 1px solid #00ccff;
+    border-radius: 12px;
+    max-width: 100vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #20bb6d #0a0a0a;
+}
+
+/* ENVOLTORIO PARA MANTENER BOTÓN Y SUBMENÚ JUNTOS */
+.dropdown-item {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+/* BOTONES VERTICALES */
+.card3Details .dropdown-toggle {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    background: #1a1a1a;
+    color: #ff9900;
+    border: 1px solid rgba(255, 153, 0, 0.3);
+    
+    /* --- ESTOS SON LOS CAMBIOS --- */
+    width: 55px;          /* Ancho fijo */
+    height: 300px;        /* AJUSTA ESTE VALOR: Define el largo igual para todos */
+    min-height: 300px;    /* Asegura que no se encoja */
+    /* ----------------------------- */
+
+    padding: 0px;
+    margin-left: 0;
+    cursor: pointer;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    flex-shrink: 0;
+    transition: width 0.5s ease, opacity 0.3s ease, padding 0.5s ease, margin-left 0.5s ease;
+}
+
+/* EL SUBMENÚ HORIZONTAL (Basado en el de Novedades) */
+.card3Details .dropdown-submenu {
+    width: 0;
+    opacity: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    /* IMPORTANTE: Eliminamos el borde de aquí para que no "nazca" de golpe */
+    border: 1px solid transparent; 
+    background: transparent;
+    
+    padding: 0;
+    margin-left: 0;
+    
+    /* Transición completa */
+    transition: 
+        width 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+        opacity 0.3s ease, 
+        margin-left 0.5s ease;
+}
+
+/* ESTADO ABIERTO */
+.card3Details .dropdown-submenu.open {
+    width: 320px;
+    opacity: 1;
+    margin-left: 10px;
+    padding: 20px; /* El padding ahora no estorba porque el ancho es suficiente */
+    
+    /* El borde y fondo aparecen aquí */
+    border: 1px solid #00ccff;
+    background: rgba(10, 10, 10, 0.95);
+    border-radius: 8px;
+}
+
+/* Evita que el contenido interno empuje las paredes antes de tiempo */
+.card3Details .dropdown-submenu * {
+    min-width: 280px; /* Mantiene el contenido estable */
+}
+
+/* IMAGEN INTERNA */
+.image-inner-container {
+    width: 100%;
+    min-height: 120px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.image-inner-container img {
+    max-width: 100px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px #00ccff);
+}

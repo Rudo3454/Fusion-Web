@@ -1,0 +1,104 @@
+/* 1. Forzamos a que el overlay NO tenga fondo de color sólido, solo el degradado */
+.card6Details .overlay {
+    border: none !important;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85)) !important;
+    height: auto !important;
+    min-height: 40px; /* Le da espacio al texto */
+}
+
+/* 2. OCULTAR CUALQUIER DIV EXTRA (La solución maestra)
+   Esto le dice: "Cualquier div que esté dentro del overlay de la card 6, bórralo" */
+.card6Details .overlay div, 
+.card6Details .overlay span:not(:first-child) {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* 3. Por si las barritas tienen clases comunes, las matamos todas aquí */
+.card6Details [class*="bar"], 
+.card6Details [class*="progress"], 
+.card6Details [class*="fill"] {
+    display: none !important;
+}
+
+.card6Details {
+  display: grid;
+  /* Creamos un grid de 4 columnas iguales */
+  grid-template-columns: repeat(4, 1fr);
+  /* Definimos el alto de las filas */
+  grid-auto-rows: 150px; 
+  gap: 12px;
+  padding: 20px;
+  background: transparent; /* O el color de tu fondo */
+}
+
+/* Base para cada tarjeta */
+.bento-item {
+  position: relative;
+  background: #1a1a1a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.bento-item:hover {
+  transform: scale(1.02);
+  border-color: #00ccff;
+}
+
+.bento-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.7;
+}
+
+/* --- CONTROL DE TAMAÑOS (Lo que da el estilo de la imagen) --- */
+
+/* La primera tarjeta ocupa 2 filas de alto */
+.main-story {
+  grid-row: span 2;
+}
+
+/* La segunda tarjeta ocupa 2 columnas de ancho */
+.replay {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* La galería es alta y delgada (2 filas) */
+.gallery {
+  grid-row: span 3;
+}
+
+/* Los comics son anchos */
+.comics {
+  grid-column: span 2;
+}
+
+/* --- OVERLAYS Y TEXTO --- */
+/* --- OVERLAYS Y TEXTO (SIN BARRA DE PROGRESO) --- */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  /* El degradado hace que el texto se lea bien sin importar el color de la foto */
+  background: linear-gradient(transparent, rgba(0,0,0,0.85)); 
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+  
+  /* IMPORTANTE: No añadimos height ni border-bottom para que no parezca una barra */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Texto alineado a la izquierda */
+}

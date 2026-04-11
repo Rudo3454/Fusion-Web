@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PVZ Fusion Web</title>
+  <!-- Vinculamos el CSS -->
+  <link rel="stylesheet" href="style2.css">
+  <link rel="stylesheet" href="video.css">
+  <link rel="stylesheet" href="galeria.css">
+  <link rel="stylesheet" href="Carrusel.css">
+  <link rel="stylesheet" href="Sneak peek.css">
+</head>
+<body>
+  <!-- Encabezado principal con botones de idioma a la derecha -->
+  <header class="main-header">
+  <h1 id="main-title">Plants Vs Zombies Fusion Web</h1>
+  <div class="language-switch">
+    <select id="language-select" onchange="setLanguage(this.value)">
+      <option value="es">Español</option>
+      <option value="en">English</option>
+      <option value="fr">Français</option>
+      <option value="cn">中文</option>
+      <option value="kr">한국어</option>
+    </select>
+  </div>
+</header>
+
+  <!-- Subtítulo -->
+  <div class="header">
+    <h2 id="title">Juego General</h2>
+  </div>
+  
+  <!-- Barra de progreso -->
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
+  <p id="progress-text">Progreso general del juego: 273/529 (51.98%)</p>
+
+  <div class="carousel-container-infinito">
+  <div class="carousel-track-infinito">
+    
+    <div class="carousel-slide"><img src="https://static.wikia.nocookie.net/pvz-fusion/images/8/8b/Unstable_Obsidian.png/revision/latest?cb=20250125111908" alt="1"></div>
+    <div class="carousel-slide"><img src="https://i.namu.wiki/i/xobceiM5_YuCiV1-g5HGVjcHpB1i5GcQpL1YAHeqw8YbN_Q7cwgmyLE2wwnuZGXiYdKZdT9lM6e8xb4Hzp4RFA.webp" alt="2"></div>
+    <div class="carousel-slide"><img src="https://static.wikia.nocookie.net/pvz-fusion/images/3/39/Swordmastar.png/revision/latest/scale-to-width/360?cb=20250203091110" alt="3"></div>
+    <div class="carousel-slide"><img src="https://tribe-s3-production.imgix.net/8vg96PAwIj7E2Et6BKcEe?fit=max&w=1000&auto=compress,format" alt="4"></div>
+    <div class="carousel-slide"><img src="https://i.namu.wiki/i/UC6p-USpJKmoTaUaE4lTxwsZ_mHGGBktLTnh_uyj0WC3pXIwlRZcUbUv8zbP34tr0a570xVVVkbFWX681N9lVw.webp" alt="5"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images/media/template_images/2024/18276498/bosses---pvz-fusion-261-18276498/dentabysstall-nutleader.png" alt="6"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images//media/template_images/2024/15894920/pvz-fusion-241-ultimate-plants-15894920/zzzzz-1759073314ultimatesunflower1.png" alt="7"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images/media/template_images/2024/15894920/pvz-fusion--level-3-evo-zombie-15894920/cherry.png" alt="8"></div>
+
+
+    <div class="carousel-slide"><img src="https://static.wikia.nocookie.net/pvz-fusion/images/8/8b/Unstable_Obsidian.png/revision/latest?cb=20250125111908" alt="1-clon"></div>
+    <div class="carousel-slide"><img src="https://i.namu.wiki/i/xobceiM5_YuCiV1-g5HGVjcHpB1i5GcQpL1YAHeqw8YbN_Q7cwgmyLE2wwnuZGXiYdKZdT9lM6e8xb4Hzp4RFA.webp" alt="2-clon"></div>
+    <div class="carousel-slide"><img src="https://static.wikia.nocookie.net/pvz-fusion/images/3/39/Swordmastar.png/revision/latest/scale-to-width/360?cb=20250203091110" alt="3-clon"></div>
+    <div class="carousel-slide"><img src="https://tribe-s3-production.imgix.net/8vg96PAwIj7E2Et6BKcEe?fit=max&w=1000&auto=compress,format" alt="4-clon"></div>
+    <div class="carousel-slide"><img src="https://i.namu.wiki/i/UC6p-USpJKmoTaUaE4lTxwsZ_mHGGBktLTnh_uyj0WC3pXIwlRZcUbUv8zbP34tr0a570xVVVkbFWX681N9lVw.webp" alt="5-clon"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images/media/template_images/2024/18276498/bosses---pvz-fusion-261-18276498/dentabysstall-nutleader.png" alt="6-clon"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images//media/template_images/2024/15894920/pvz-fusion-241-ultimate-plants-15894920/zzzzz-1759073314ultimatesunflower1.png" alt="7-clon"></div>
+    <div class="carousel-slide"><img src="https://tiermaker.com/images/media/template_images/2024/15894920/pvz-fusion--level-3-evo-zombie-15894920/cherry.png" alt="8-clon"></div>
+  </div>
+
+  <button class="dropdown-toggle" onclick="toggleMenu(this)">Extra</button>
+<div class="dropdown-submenu"> ... </div>
+
+</div>
+
+  </div>
+
+  <!-- Grid de cartas -->
+  <div class="card-grid">
+    <div class="card revealed" id="card1" onclick="showCardContent('card1')">Novedades</div>
+    <div class="card revealed" id="card2" onclick="showCardContent('card2')">Próxima actualización</div>
+    <div class="card revealed" id="card5" onclick="showCardContent('card5')">Stream Devs</div>
+    <div class="card revealed" id="card7" onclick="showCardContent('card7')">Videos de Bilibili</div>
+    <div class="card revealed" id="card3" onclick="showCardContent('card3')">Sneak Peeks Novedades</div>
+    <div class="card revealed" id="card4" onclick="showCardContent('card4')">Redes Sociales</div>
+    <div class="card revealed" id="card6" onclick="showCardContent('card6')">Galeria</div>
+    <div class="card locked" id="card8" onclick="showCardContent('card8')">????</div>
+    <div class="card locked" id="card9" onclick="showCardContent('card9')">????</div>
+    <div class="card locked" id="card10" onclick="showCardContent('card10')">????</div>
+  </div>
+
+  <!-- Panel emergente -->
+   <div id="card-content" class="card-content hidden">
+  <span class="close" onclick="closeCardContent()">×</span>
+  <div id="card-details"></div>
+</div>
+
+<div class="video-main-container">
+  <button class="nav-btn prev" onclick="scrollVideos(-1)">&#10094;</button>
+
+  <div class="video-carousel" id="videoSlider">
+    <div class="video-item">
+      <video src="colab.MP4" controls></video>
+      <span class="mision-text">Colab HSR</span>
+    </div>
+     <div class="video-item">
+      <video src="comandostar.MP4" controls></video>
+      <span class="mision-text">Tactica</span>
+    </div>
+    </div>
+
+  <button class="nav-btn next" onclick="scrollVideos(1)">&#10095;</button>
+</div>
+
+
+  <footer class="footer">
+    <p id="footer">PVZ Fusion Web | Diseñado por Ai Senpai</p>
+  </footer>
+
+  <!-- Vinculamos el JS -->
+  <script src="function updateProgress.js"></script>
+</body>
+</html>

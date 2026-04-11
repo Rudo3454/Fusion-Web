@@ -1,0 +1,59 @@
+
+:root {
+  --ancho-slide: 200px; 
+  --gap-slide: 30px;
+}
+
+.carousel-container-infinito {
+  width: 100%;
+  height: 120px; 
+  overflow: hidden;
+  background: 00000080;
+  border: 1px solid rgba(0, 204, 255, 0.4);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* La pista DEBE ser lo suficientemente ancha para las 8 imágenes*/
+.carousel-track-infinito {
+  display: flex;
+  flex-direction: row; /* Fuerza que vayan de lado */
+  flex-wrap: nowrap;   /* PROHIBIDO que bajen a la segunda fila */
+  gap: var(--gap-slide);
+  align-items: center;
+  width: max-content;  /* La pista se estirará lo necesario hacia la derecha */
+  
+  /* Si quieres que vuelvan a moverse solas: */
+  animation: scrollInfinito 30s linear infinite;
+}
+
+.carousel-slide {
+  width: var(--ancho-slide);
+  height: var(--alto-slide);
+  flex-shrink: 0; /* EVITA que las imágenes se aplasten para intentar caber */
+}
+
+.carousel-slide img {
+  width: 50%;
+  height: 20%;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 2px solid rgba(255, 153, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+@keyframes scrollInfinito {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* MATEMÁTICA PURA: 
+       Multiplicamos (Ancho + Gap) por el número de imágenes originales (8).
+       Al llegar a este punto, el primer 'clon' estará en el mismo lugar 
+       donde empezó la primera imagen original, haciendo el salto invisible. */
+    transform: translateX(calc((var(--ancho-slide) + var(--gap-slide)) * -8));
+  }
+}
+
