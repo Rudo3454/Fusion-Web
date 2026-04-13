@@ -1,72 +1,101 @@
-/* El contenedor padre que agrupa flechas y video */
+/* 1. Contenedor Maestro: Define el espacio real en la página */
 .video-main-container {
-    position: relative; /* Clave: hace que los botones se orienten por este cuadro */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 900px;
-    margin: 20px auto;
-    padding: 0 60px; /* Espacio para que las flechas no tapen el video */
-}
-
-/* Estilo para el contenedor del video (el slider) */
-.video-carousel {
-    display: flex;
-    overflow: hidden;
+    position: relative;
     width: 100%;
-    border-radius: 12px;
-    border: 2px solid rgba(0, 204, 255, 0.3);
-    background: #000;
-}
-
-/* Botones de navegación (Flechas) */
-.nav-btn {
-    position: absolute;
-    top: 50%; /* Los pone a la mitad de la altura */
-    transform: translateY(-50%); /* Centrado vertical exacto */
-    background: rgba(0, 204, 255, 0.2);
-    border: 2px solid #00ccff;
-    color: #00ccff;
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
+    max-width: 900px;
+    margin: 40px auto; /* Centra el carrusel y le da aire arriba/abajo */
+    padding: 20px 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
 }
 
-.nav-btn:hover {
-    background: #00ccff;
-    color: #000;
-    box-shadow: 0 0 15px #00ccff;
+/* 2. El Slider: AQUÍ CREAMOS EL RECTÁNGULO */
+.video-carousel {
+    .video-carousel {
+    background: none !important; /* Borra el fondo azul oscuro */
+    border: none !important;       /* Borra el borde cian */
+    box-shadow: none !important;   /* Borra la sombra interna */
+    height: auto;                  /* Que se ajuste solo al video */
+    overflow: visible;             /* Permite que la nueva animación respire */
+}
 }
 
-/* Posición específica de cada botón */
-.prev {
-    left: 5px; /* Ajusta qué tan pegado a la izquierda */
+/* 2. Estilo base de los videos (ocultos y rotados al fondo) */
+.video-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    /* Los mandamos al "fondo" del círculo */
+    transform: rotateY(90deg) translateZ(-300px) scale(0.8);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Movimiento suave */
 }
 
-.next {
-    right: 5px; /* Ajusta qué tan pegado a la derecha */
+/* 2. Ajustamos el video para que no tenga márgenes innecesarios */
+.video-item video {
+    width: 100%;
+    max-width: 800px; /* Puedes ajustar este tamaño a tu gusto */
+    border: none;      /* Quitamos cualquier borde previo del video */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Mantenemos una sombra sutil para que no flote plano */
 }
 
-/* Estilo para el texto debajo del video */
-.mision-text {
-    display: block;
-    text-align: center;
-    color: #00ccff;
-    font-weight: bold;
-    margin-top: 10px;
-    text-transform: uppercase;
+/* Solo mostramos el que tiene la clase active */
+.video-item.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: rotateY(0deg) translateZ(0) scale(1);
+    z-index: 10;
 }
 
 .video-item video {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* 4. Botones: Fijos a los lados sin estorbar */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.7);
+    border: 2px solid #00ccff;
+    color: #00ccff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 204, 255, 0.4);
+}
+
+.prev { left: -60px; } /* Los sacamos del cuadro del video */
+.next { right: -60px; }
+
+/* 5. Footer: Aseguramos que se quede abajo */
+footer {
     width: 100%;
-    max-height: 450px;
-    display: block;
-    object-fit: contain; /* Evita que el video se estire feo */
+    padding: 20px 0;
+    text-align: center;
+    clear: both; /* Evita que cosas flotantes lo encimen */
+}
+
+/* 3. Limpiamos el texto inferior por si también estorba la nueva idea */
+.mision-text {
+    margin-top: 10px;
+    background: none;
+}
+
+/* 4. Efecto de salida (Hacia el otro lado del círculo) */
+.video-item.exit {
+    opacity: 0;
+    transform: rotateY(-90deg) translateZ(-300px) scale(0.8);
 }
