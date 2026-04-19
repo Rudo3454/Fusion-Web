@@ -86,22 +86,19 @@
   <div id="card-details"></div>
 </div>
 
-<div class="video-main-container">
-  <button class="nav-btn prev" onclick="scrollVideos(-1)">&#10094;</button>
-
-  <div class="video-carousel" id="videoSlider">
-    <div class="video-item">
-      <video src="colab.MP4" controls></video>
-      <span class="mision-text">Colab HSR</span>
+  <div class="video-main-container">
+    <button id="prevBtn" class="nav-btn prev"><</button>
+    
+    <div class="video-carousel">
+        <div class="video-item active">
+            <video src="videos/colab.mp4" loop></video>
+            <div class="mision-text">Colab</div>
+        </div>
+        <div class="video-item">
+            <video src="videos/comandostar.mp4" loop></video>
+            <div class="mision-text">TÁCTICA</div>
+        </div>
     </div>
-     <div class="video-item">
-      <video src="comandostar.MP4" controls></video>
-      <span class="mision-text">Tactica</span>
-    </div>
-    </div>
-
-  <button class="nav-btn next" onclick="scrollVideos(1)">&#10095;</button>
-</div>
 
 
   <footer class="footer">
@@ -110,5 +107,6 @@
 
   <!-- Vinculamos el JS -->
   <script src="function updateProgress.js"></script>
+  <script src="video1.js"></script>
 </body>
 </html>
