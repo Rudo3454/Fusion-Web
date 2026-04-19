@@ -1,101 +1,65 @@
-/* 1. Contenedor Maestro: Define el espacio real en la página */
+/* 1. Contenedor Maestro: Lo hacemos más alto y estable */
 .video-main-container {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    margin: 40px auto; /* Centra el carrusel y le da aire arriba/abajo */
-    padding: 20px 0;
+    max-width: 1200px;
+    margin: 40px auto;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    /* LE DAMOS ALTURA REAL AL CONTENEDOR (Vital para que se vea) */
+    min-height: 550px; /* <--- AJUSTA ESTO SEGÚN TU VIDEO */
+    perspective: 1500px;
+    overflow: visible;
 }
 
-/* 2. El Slider: AQUÍ CREAMOS EL RECTÁNGULO */
+/* 2. El Carrusel: Ahora es un contenedor que SI ocupa espacio */
 .video-carousel {
-    .video-carousel {
-    background: none !important; /* Borra el fondo azul oscuro */
-    border: none !important;       /* Borra el borde cian */
-    box-shadow: none !important;   /* Borra la sombra interna */
-    height: auto;                  /* Que se ajuste solo al video */
-    overflow: visible;             /* Permite que la nueva animación respire */
-}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%; /* Toma la altura del padre */
+    position: relative;
+    overflow: visible; 
 }
 
-/* 2. Estilo base de los videos (ocultos y rotados al fondo) */
+/* El video oculto está girado 90 grados (invisible de perfil) */
 .video-item {
     position: absolute;
-    width: 100%;
-    height: 100%;
     opacity: 0;
-    pointer-events: none;
-    /* Los mandamos al "fondo" del círculo */
-    transform: rotateY(90deg) translateZ(-300px) scale(0.8);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Movimiento suave */
+    transform: rotateY(90deg) scale(0.8);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 2. Ajustamos el video para que no tenga márgenes innecesarios */
-.video-item video {
-    width: 100%;
-    max-width: 800px; /* Puedes ajustar este tamaño a tu gusto */
-    border: none;      /* Quitamos cualquier borde previo del video */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Mantenemos una sombra sutil para que no flote plano */
-}
-
-/* Solo mostramos el que tiene la clase active */
+/* El video ACTIVO se pone de frente y brilla */
 .video-item.active {
     opacity: 1;
-    pointer-events: auto;
-    transform: rotateY(0deg) translateZ(0) scale(1);
+    transform: rotateY(0deg) scale(1);
     z-index: 10;
+    filter: drop-shadow(0 0 20px rgba(0, 204, 255, 0.4)); /* Glow cian */
+}
+
+/* Solo mostramos el texto si está activo */
+.video-item.active .mision-text {
+    opacity: 1;
 }
 
 .video-item video {
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* 4. Botones: Fijos a los lados sin estorbar */
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.7);
-    border: 2px solid #00ccff;
-    color: #00ccff;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0, 204, 255, 0.4);
-}
-
-.prev { left: -60px; } /* Los sacamos del cuadro del video */
-.next { right: -60px; }
-
-/* 5. Footer: Aseguramos que se quede abajo */
-footer {
     width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    clear: both; /* Evita que cosas flotantes lo encimen */
+    border-radius: 12px;
+    border: 1px solid rgba(0, 204, 255, 0.1);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
-/* 3. Limpiamos el texto inferior por si también estorba la nueva idea */
+/* Texto de Misión: Arreglamos que no se corte abajo */
 .mision-text {
-    margin-top: 10px;
-    background: none;
-}
-
-/* 4. Efecto de salida (Hacia el otro lado del círculo) */
-.video-item.exit {
+    margin-top: 20px;
+    color: #00ccff;
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ccff;
+    text-transform: uppercase;
     opacity: 0;
-    transform: rotateY(-90deg) translateZ(-300px) scale(0.8);
+    transition: 0.3s ease;
 }
